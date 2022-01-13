@@ -6,9 +6,7 @@ public class Main {
         // Builder Patter : helps us to create complex object - objects with
         // Factory Pattern : provide default configuration
         // Template Patter : Boilerplate code to perform some action
-
-        Game game = TicTacToeFactory.standard3x3Game();
+        Game game = TicTacToeFactory.twoPlayerStandard3x3Game();
         game.play();
-
     }
 }

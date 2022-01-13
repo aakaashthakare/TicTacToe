@@ -1,7 +1,22 @@
 package com.akash.game;
 
+import java.util.Arrays;
+
 public class TicTacToeFactory {
-    public static Game standard3x3Game(){
-      return new TicTacToeGame();
+    public static Game twoPlayerStandard3x3Game(){
+        TicTacToeSymbol  cross = new TicTacToeSymbol("X");
+        TicTacToeSymbol nought = new TicTacToeSymbol("O");
+        TicTacToeBoard board = new TicTacToeBoard(3,3);
+        Player player1 = new HumanPlayer("God");
+        Player player2 = new HumanPlayer("Akash");
+      return new TicTacToeGame(board, Arrays.asList(cross,nought),Arrays.asList(player1,player2));
+    }
+    public static Game singlePlayerStandard3x3Game(){
+        TicTacToeSymbol  cross = new TicTacToeSymbol("X");
+        TicTacToeSymbol nought = new TicTacToeSymbol("O");
+        TicTacToeBoard board = new TicTacToeBoard(3,3);
+        Player player1 = new HumanPlayer("Akash");
+        Player player2 = new HumanPlayer("God");
+        return new TicTacToeGame(board, Arrays.asList(cross,nought),Arrays.asList(player1,player2));
     }
 }

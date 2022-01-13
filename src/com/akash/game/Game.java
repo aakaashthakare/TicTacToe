@@ -8,24 +8,25 @@ public abstract class Game {
     abstract boolean hasWinner();
     abstract Player getCurrentPlayer();
     abstract Player getWinningPlayer();
-    abstract boolean makeMove();
     abstract void makeMove(Move move);
     abstract PlayerVisibleState getPlayerVisibleState(Player player);
+    abstract void updateCurrentPlayer();
     // chess / snakes and ladder / tic-tac-toe
     // battleship / cards / scrabble
 
     void play (){
-        System.out.println("PLAYING A GAME OF " + getGameTitle());
+        System.out.println("Playing " + getGameTitle());
         initialize();
         do {
-            displayGameStats();
+            updateCurrentPlayer();
+//            displayGameStats();
             Player currentPlayer = getCurrentPlayer();
             PlayerVisibleState state = getPlayerVisibleState(currentPlayer);
-            Move move = currentPlayer.makeMove(state);
+            Move move = currentPlayer.getMove(state);
             makeMove(move);
 
         } while(!isDraw() && !hasWinner());
-
+        displayGameStats();
         if(isDraw()){
             System.out.println("Game is draw :(");
         }
