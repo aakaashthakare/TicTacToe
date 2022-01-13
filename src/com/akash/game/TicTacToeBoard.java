@@ -1,14 +1,17 @@
 package com.akash.game;
 
 
+import java.util.HashSet;
+
 public class TicTacToeBoard {
     TicTacToeSymbol[][] board;
     int numRows, numCols;
+    HashSet<Integer> cells = new HashSet<>();
+
     public TicTacToeBoard(int numRows, int numCols){
         this.numCols =numCols;
         this.numRows = numRows;
         board =  new TicTacToeSymbol[numRows][numCols];
-
     }
 
     public void initialize(){
@@ -19,18 +22,27 @@ public class TicTacToeBoard {
         }
     }
 
+
+    boolean markCellFilled(int cell){
+       return cells.add(cell);
+    }
+
+
     public void display(){
-        System.out.println("Internal State of the board :");
+        System.out.println("Tic-Tac-Toe Board :\n");
+
         for(int row =0; row < numRows; row++) {
+            if(row != 0)
+                System.out.println("---+---+---");
             if (board[row][0] != null)
-                System.out.print(board[row][0].toString());
+                System.out.print(" "+board[row][0].toString()+" ");
             else
-                System.out.print(" ");
+                System.out.print("   ");
             for (int col = 1; col < numCols; col++) {
                 if (board[row][col] != null)
-                    System.out.print("|"+board[row][col].toString());
+                    System.out.print("| "+board[row][col].toString()+" ");
                 else
-                    System.out.print("| ");
+                    System.out.print("|   ");
             }
             System.out.println();
         }
@@ -76,12 +88,35 @@ public class TicTacToeBoard {
     }
 
     boolean isDiagonalCaptured(TicTacToeSymbol symbol){
-        //TODO
+        boolean diagonalOccupied = true;
+        for (int row = 0; row < numRows; row++ ){
+            if(!symbol.equals(board[row][row])){
+                diagonalOccupied = false;
+                break;
+            }
+
+        }
+
+        if(diagonalOccupied)
+            return true;
+
+        // Check anti-diagonal
+        diagonalOccupied = true;
+        for (int row = 0; row < numRows; row++ ){
+            if(!symbol.equals(board[row][(numRows-1)-row])){
+                diagonalOccupied = false;
+                break;
+            }
+
+        }
+
+        if(diagonalOccupied)
+            return true;
+
         return false;
     }
 
     public void set(int row, int col, TicTacToeSymbol symbol){
-        //TODO Add validation to check if the place is not preoccupied
         board[row][col] =symbol;
     }
 

@@ -1,5 +1,7 @@
 package com.akash.game;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.List;
 
 public class TicTacToeGame extends Game{
@@ -63,7 +65,7 @@ public class TicTacToeGame extends Game{
     }
 
     @Override
-    PlayerVisibleState getPlayerVisibleState(Player player) {
+    PlayerVisibleState getPlayerVisibleState() {
         return new TicTacToePlayerVisibleState(board);
     }
 
@@ -74,5 +76,35 @@ public class TicTacToeGame extends Game{
     @Override
     void updateCurrentPlayer() {
         currentPlayerIndex = (currentPlayerIndex +1) % players.size();
+    }
+
+    @Override
+    void getPlayerDetails() {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        try{
+            int count = 0;
+            String userInput;
+            do {
+                if(count == 0)
+                    System.out.print("Do you want to provide player names (y/n) ? : ");
+                else
+                    System.out.print("Please provide valid input (y/n) : ");
+                userInput= bufferedReader.readLine();
+                count++;
+            }while (!userInput.equalsIgnoreCase("y") && !userInput.equalsIgnoreCase("n"));
+
+            if(userInput.equalsIgnoreCase("y")) {
+                players.clear();
+                for (int i = 1; i <= GameConstants.TOTAL_PLAYERS; i++) {
+                    System.out.print("Enter name of Player-" + i + " : ");
+                    String name = bufferedReader.readLine();
+                    Player player = new HumanPlayer(name);
+                    players.add(player);
+                }
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+            System.out.println("Sorry something went wrong :(");
+        }
     }
 }

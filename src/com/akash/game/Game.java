@@ -9,16 +9,18 @@ public abstract class Game {
     abstract Player getCurrentPlayer();
     abstract Player getWinningPlayer();
     abstract void makeMove(Move move);
-    abstract PlayerVisibleState getPlayerVisibleState(Player player);
+    abstract PlayerVisibleState getPlayerVisibleState();
     abstract void updateCurrentPlayer();
+    abstract  void getPlayerDetails();
 
     void play (){
         System.out.println("Playing " + getGameTitle());
+        getPlayerDetails();
         initialize();
         do {
             updateCurrentPlayer();
             Player currentPlayer = getCurrentPlayer();
-            PlayerVisibleState state = getPlayerVisibleState(currentPlayer);
+            PlayerVisibleState state = getPlayerVisibleState();
             Move move = currentPlayer.getMove(state);
             makeMove(move);
 

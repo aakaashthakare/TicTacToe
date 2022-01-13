@@ -10,6 +10,11 @@ public class TicTacToePlayerVisibleState implements PlayerVisibleState{
         ticTacToeBoard.display();
     }
 
+    public TicTacToeBoard  getBoard(){
+        return this.ticTacToeBoard;
+    }
+
+
     @Override
     public Pair<Integer, Integer> getFirstEmptyLocation() {
         return ticTacToeBoard.firstEmptyLocation();
