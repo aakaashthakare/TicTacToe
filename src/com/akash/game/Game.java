@@ -11,15 +11,12 @@ public abstract class Game {
     abstract void makeMove(Move move);
     abstract PlayerVisibleState getPlayerVisibleState(Player player);
     abstract void updateCurrentPlayer();
-    // chess / snakes and ladder / tic-tac-toe
-    // battleship / cards / scrabble
 
     void play (){
         System.out.println("Playing " + getGameTitle());
         initialize();
         do {
             updateCurrentPlayer();
-//            displayGameStats();
             Player currentPlayer = getCurrentPlayer();
             PlayerVisibleState state = getPlayerVisibleState(currentPlayer);
             Move move = currentPlayer.getMove(state);
