@@ -3,6 +3,7 @@ package com.akash.game;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
+//Human Player
 public class HumanPlayer implements Player {
     private String name;
     private BufferedReader br;

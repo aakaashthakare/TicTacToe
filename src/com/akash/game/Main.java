@@ -21,7 +21,7 @@ public class Main {
                 game = TicTacToeFactory.singlePlayerStandard3x3Game();
             game.play();
         }catch (Exception e){
-            System.out.println("\nSorry something went wrong ----- :(");
+            System.out.println("\nSorry something went wrong:(");
         }
 
 
